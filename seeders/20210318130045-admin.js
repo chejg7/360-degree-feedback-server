@@ -15,6 +15,7 @@ module.exports = {
       email: 'chejg7@gmail.com',
       name: 'jk',
       password: 'cmoe2021',
+      role: 'admin',
       createdAt: new Date,
       updatedAt: new Date
     }]);
