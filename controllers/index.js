@@ -19,5 +19,24 @@ module.exports = {
                 })
             })
         }
+    },
+
+    createProject : async (req, res) => {
+        console.log(req);
+    },
+
+    createSurvey : async (req, res) => {
+        console.log(req);
+
+    },
+
+    getProjects : async (req, res) => {
+        console.log(req);
+
+    },
+
+    signup : async (req, res) => {
+        console.log(req);
+
     }
 }
