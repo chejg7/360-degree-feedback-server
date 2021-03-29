@@ -22,12 +22,13 @@ module.exports = {
     },
 
     createProject : async (req, res) => {
-        console.log(req);
+        console.log(req.body);
+        res.status(200).send('success');
     },
 
     createSurvey : async (req, res) => {
-        console.log(req);
-
+        console.log(req.body);
+        res.status(200).send('success');
     },
 
     getProjects : async (req, res) => {
