@@ -1,15 +1,25 @@
-const { Admin, Project, User, Response } = require('../models');
+const { Project, User, Response } = require('../models');
 
 module.exports = {
     login : async (req, res) => {
         const { email, password } = req.body;
-        const user = await User.findOne({
+        const userInfo = await User.findAll({
             where: { email: email, password: password}
         });
-        if (!user) {
+        console.log('찾은 유저 데이터', userInfo);
+        if (!userInfo) {
             res.status(404).send('invalid user');
         } else {
             req.session.save(() => {
+                user = userInfo.reduce((acc, cur) => {
+                    acc.id = cur.id;
+                    acc.name = cur.name;
+                    acc.email = cur.email;
+                    acc.role ? acc.role.push(cur.role) : acc.role = [cur.role];
+                    acc.projectTitle ? acc.projectTitle.push(cur.projectTitle) : acc.projectTitle = [cur.projectTitle];
+                    return acc;
+                },{});
+                console.log('보낼 유저 데이터', user);
                 req.session.uid = user.id
                 res.status(200).send({
                     id: user.id,
@@ -26,7 +36,7 @@ module.exports = {
         const projects = await Project.findAll({
             where: { projectTitle: req.body.projectTitle }
         });
-        console.log(projects)
+        console.log('찾은 프로젝트 정보', projects)
         if (projects.length > 0) {
             res.status(404).send('이미 존재하는 프로젝트명입니다');
         } else {
