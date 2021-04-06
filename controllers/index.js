@@ -94,6 +94,21 @@ module.exports = {
         res.status(200).send(projects);
     },
 
+    finishProject : async (req, res) => {
+        const title = req.body.projectTitle;
+        console.log('완료할 프로젝트명', title);
+        await User.destroy({
+            where: {
+                projectTitle: title
+            }
+        })
+        res.status(200).send('success')
+    },
+
+    removeProject : async (req, res) => {
+
+    },
+
     signup : async (req, res) => {
         console.log(req);
 

@@ -26,12 +26,5 @@ module.exports = {
         res.status(200).send(survey);
     },
 
-    finishProject : async (req, res) => {
-        const { title } = req.body.projectTitle;
-
-    },
-
-    removeProject : async (req, res) => {
-
-    }
+    
 }
