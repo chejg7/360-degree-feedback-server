@@ -7,6 +7,8 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/project',controller.getProject);
+router.post('/project', controller.getProject);
+router.post('/project/finish', controller.finishProject);
+router.post('/project/remove', controller.removeProject);
 
 module.exports = router;
