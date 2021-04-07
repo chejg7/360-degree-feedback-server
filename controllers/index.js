@@ -40,7 +40,7 @@ module.exports = {
         if (projects.length > 0) {
             res.status(404).send('이미 존재하는 프로젝트명입니다');
         } else {
-            const project = await Project.create({
+            const newProject = await Project.create({
                 projectTitle: req.body.projectTitle,
                 company: req.body.company,
                 managerName: req.body.managerName,
@@ -51,7 +51,7 @@ module.exports = {
                 userInfo: req.body.userInfo,
                 questions: req.body.questions
             });
-            const manager = await User.create({
+            const newManager = await User.create({
                 email: req.body.managerEmail,
                 name: req.body.managerName,
                 password: 'cmoe2021',
@@ -59,10 +59,10 @@ module.exports = {
                 projectTitle: req.body.projectTitle
             });
             const userInfo = req.body.userInfo;
-            await userInfo.map(user => {
-                Response.create({
+            for (let user of userInfo) {
+                await Response.create({
                     projectTitle: req.body.projectTitle,
-                    projectID: project.id,
+                    projectID: newProject.id,
                     surveyTitle: user['진단명'],
                     evaluatedName: user['피평가자 이름'],
                     evaluatedEmail: user['피평가자 이메일'],
@@ -70,7 +70,7 @@ module.exports = {
                     evaluatorEmail: user['평가자 이메일'],
                     relationToEvaluated: user['관계']
                 });
-                User.findOrCreate({
+                await User.findOrCreate({
                     where: { email: user['평가자 이메일']},
                     defaults: {
                         password: user['비밀번호'],
@@ -79,7 +79,28 @@ module.exports = {
                         projectTitle: req.body.projectTitle
                     }
                 });
-            });
+            }
+            // const newUser = await Promise.all(userInfo.map(user => {
+            //     Response.create({
+            //         projectTitle: req.body.projectTitle,
+            //         projectID: newProject.id,
+            //         surveyTitle: user['진단명'],
+            //         evaluatedName: user['피평가자 이름'],
+            //         evaluatedEmail: user['피평가자 이메일'],
+            //         evaluatorName: user['평가자 이름'],
+            //         evaluatorEmail: user['평가자 이메일'],
+            //         relationToEvaluated: user['관계']
+            //     });
+            //     User.findOrCreate({
+            //         where: { email: user['평가자 이메일']},
+            //         defaults: {
+            //             password: user['비밀번호'],
+            //             name: user['평가자 이름'],
+            //             role: 'user',
+            //             projectTitle: req.body.projectTitle
+            //         }
+            //     });
+            // }));
             res.status(200).send('success');
         }
     },
@@ -117,6 +138,11 @@ module.exports = {
                 projectTitle: title
             }
         });
+        await User.destroy({
+            where: {
+                projectTitle: title
+            }
+        })
         res.status(200).send('success');
     },
 
