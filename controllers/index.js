@@ -101,12 +101,23 @@ module.exports = {
             where: {
                 projectTitle: title
             }
-        })
-        res.status(200).send('success')
+        });
+        res.status(200).send('success');
     },
 
     removeProject : async (req, res) => {
-
+        const title = req.body.projectTitle;
+        await Project.destroy({
+            where: {
+                projectTitle: title
+            }
+        });
+        await Response.destroy({
+            where: {
+                projectTitle: title
+            }
+        });
+        res.status(200).send('success');
     },
 
     signup : async (req, res) => {
