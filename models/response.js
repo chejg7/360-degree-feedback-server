@@ -19,8 +19,17 @@ module.exports = (sequelize, DataTypes) => {
     surveyTitle: DataTypes.STRING,
     evaluatedName: DataTypes.STRING,
     evaluatedEmail: DataTypes.STRING,
+    evaluatedPosition: DataTypes.STRING,
+    evaluatedDivision: DataTypes.STRING,
+    evaluatedDepartment: DataTypes.STRING,
+    evaluatedTeam: DataTypes.STRING,
     evaluatorName: DataTypes.STRING,
     evaluatorEmail: DataTypes.STRING,
+    evaluatorPosition: DataTypes.STRING,
+    evaluatorDivision: DataTypes.STRING,
+    evaluatorDepartment: DataTypes.STRING,
+    evaluatorTeam: DataTypes.STRING,
+    evaluatorMobile: DataTypes.STRING,
     relationToEvaluated: DataTypes.STRING,
     response: DataTypes.JSON
   }, {

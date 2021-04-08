@@ -20,10 +20,8 @@ module.exports = {
                 }
             })
             project.questions = projectData.questions;
-            project.userInfo = projectData.userInfo;
             projects.push(project);
         }
-        console.log('보낼 데이터', projects);
         res.status(200).send(projects);
     },
 
