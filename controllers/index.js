@@ -71,15 +71,6 @@ module.exports = {
                         evaluatorName: user['평가자 이름'],
                         evaluatorEmail: user['평가자 이메일'],
                         relationToEvaluated: user['관계'],
-                        evaluatedPosition: user['피평가자 직위'],
-                        evaluatedDivision: user['피평가자 본부'],
-                        evaluatedDepartment: user['피평가자 부서'],
-                        evaluatedTeam: user['피평가자 팀'],
-                        evaluatorPosition: user['평가자 직위'],
-                        evaluatorDivision: user['평가자 본부'],
-                        evaluatorDepartment: user['평가자 부서'],
-                        evaluatorTeam: user['평가자 팀'],
-                        evaluatorMobile: user['평가자 휴대폰']
                     });
                     const newUser = await User.findOrCreate({
                         where: { email: user['평가자 이메일']},

@@ -4,7 +4,7 @@ module.exports = {
     getProject : async (req, res) => {
         console.log('요청 데이터', req.body);
         const { email, projectTitle } = req.body;
-        const survey = [];
+        const projects = [];
         for (let title of projectTitle) {
             const project = { projectTitle: title };
             const evaluatedInfo = await Response.findAll({
@@ -20,10 +20,11 @@ module.exports = {
                 }
             })
             project.questions = projectData.questions;
-            survey.push(project);
+            project.userInfo = projectData.userInfo;
+            projects.push(project);
         }
-        console.log('보낼 데이터', survey);
-        res.status(200).send(survey);
+        console.log('보낼 데이터', projects);
+        res.status(200).send(projects);
     },
 
     
