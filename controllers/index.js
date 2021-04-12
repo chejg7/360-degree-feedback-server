@@ -135,7 +135,8 @@ module.exports = {
         console.log('완료할 프로젝트명', title);
         await User.destroy({
             where: {
-                projectTitle: title
+                projectTitle: title,
+                role: 'user'
             }
         });
         res.status(200).send('success');
@@ -169,6 +170,22 @@ module.exports = {
             }
         });
         res.status(200).send(result);
+    },
+
+    restartProject : async (req, res) => {
+        const userInfo = req.body.userInfo
+        for (let user of userInfo) {
+            await User.findOrCreate({
+                where: { email: user['평가자 이메일']},
+                defaults: {
+                    password: user['비밀번호'],
+                    name: user['평가자 이름'],
+                    role: 'user',
+                    projectTitle: req.body.projectTitle
+                }
+            });
+        }
+        res.status(200).send('success');
     },
 
     signup : async (req, res) => {

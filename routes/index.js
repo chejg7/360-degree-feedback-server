@@ -11,6 +11,7 @@ router.post('/login', controller.login);
 router.get('/project', controller.getProjects);
 router.post('/project/create', controller.createProject);
 router.post('/project/finish', controller.finishProject);
+router.post('/project/restart', controller.restartProject);
 router.post('/project/remove', controller.removeProject);
 router.post('/createsurvey', controller.createSurvey);
 router.post('/responses', controller.getResponses);
