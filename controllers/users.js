@@ -25,5 +25,14 @@ module.exports = {
         res.status(200).send(projects);
     },
 
-    
+    postResponse : async (req, res) => {
+        const { evaluated, data } = req.body;
+        console.log('받아온 response', data);
+        await Response.update({ response: data }, {
+            where: {
+                id: evaluated.id
+            }
+        })
+        res.status(200).send('success');
+    },
 }

@@ -161,6 +161,16 @@ module.exports = {
         res.status(200).send('success');
     },
 
+    getResponses : async (req, res) => {
+        const title = req.body.projectTitle;
+        const result = await Response.findAll({
+            where: {
+                projectTitle: title
+            }
+        });
+        res.status(200).send(result);
+    },
+
     signup : async (req, res) => {
         console.log(req);
 

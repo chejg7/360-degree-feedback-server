@@ -8,5 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/project', controller.getProject);
+router.post('/response', controller.postResponse);
 
 module.exports = router;
