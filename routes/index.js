@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', controller.login);
+router.post('/logout', controller.logout);
 router.get('/project', controller.getProjects);
 router.post('/project/create', controller.createProject);
 router.post('/project/finish', controller.finishProject);

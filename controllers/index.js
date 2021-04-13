@@ -191,5 +191,11 @@ module.exports = {
     signup : async (req, res) => {
         console.log(req);
 
-    }
+    },
+
+    logout : async (req, res) => {
+        req.session.destroy(() => {
+            res.status(200).send('Logged out successfully')
+        });
+    },
 }
