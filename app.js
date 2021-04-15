@@ -7,6 +7,8 @@ const cors = require('cors');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
+require('dotenv').config()
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -22,7 +24,7 @@ app.use(bodyParser.urlencoded({extended: true, limit: '10mb'}));
 //세션 사용
 app.use(
   session({
-    secret: 'cmoe2021',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
   })

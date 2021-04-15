@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -12,9 +13,9 @@ module.exports = {
      * }], {});
     */
     await queryInterface.bulkInsert('Admins', [{
-      email: 'admin@test.com',
-      name: '관리자',
-      password: 'test2021',
+      email: process.env.ADMIN_EMAIL,
+      name: process.env.ADMIN_NAME,
+      password: process.env.ADMIN_PASSWORD,
       role: 'admin',
       createdAt: new Date,
       updatedAt: new Date
