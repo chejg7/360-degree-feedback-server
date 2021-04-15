@@ -12,9 +12,9 @@ module.exports = {
      * }], {});
     */
     await queryInterface.bulkInsert('Admins', [{
-      email: 'chejg7@gmail.com',
-      name: 'jk',
-      password: 'cmoe2021',
+      email: 'admin@test.com',
+      name: '관리자',
+      password: 'test2021',
       role: 'admin',
       createdAt: new Date,
       updatedAt: new Date
